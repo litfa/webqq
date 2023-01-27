@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import ChatlistChat from '../components/ChatlistChat/ChatlistChat.vue'
 </script>
 
-<template>home</template>
+<template>
+  home
+  <ChatlistChat></ChatlistChat>
+</template>
 
-<style scoped lang="less">
-
-</style>
+<style lang="less" scoped></style>
