@@ -1,17 +1,34 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import UserAvatar from '../UserAvatar/UserAvatar.vue'
+import dayjs from 'dayjs'
+const props = defineProps({
+  qq: {
+    type: [Number],
+    required: true
+  },
+  name: String,
+  message: String,
+  avatarType: {
+    validator(value: string) {
+      return ['member', 'group'].includes(value)
+    }
+  },
+  date: [String, Number, Date]
+})
+</script>
 
 <template>
   <div class="chatlist-chat">
     <div class="avatar">
-      <img src="https://www.alongw.cn/icon/logo.jpg" alt="avatar" />
+      <user-avatar :qq="qq" :type="avatarType" />
     </div>
     <div class="text">
       <div class="title">
-        <div class="name">name</div>
-        <div class="date">20223/1/27</div>
+        <div class="name">{{ name }}</div>
+        <div class="date">{{dayjs(date).format('YYYY-MM-DD HH:mm')}}</div>
       </div>
       <div class="title-row">
-        <div class="message">消息内容消息内容内容</div>
+        <div class="message">{{ message }}</div>
         <div class="count">1241+</div>
       </div>
     </div>

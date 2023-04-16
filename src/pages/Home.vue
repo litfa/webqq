@@ -1,10 +1,56 @@
 <script setup lang="ts">
 import ChatlistChat from '../components/ChatlistChat/ChatlistChat.vue'
+import { getMessageList as getMessageListApi } from '../apis/getMessageList'
+import { ref } from 'vue'
+import type { GetMessageList } from '../types/Message'
+
+const messageList = ref<GetMessageList[]>([])
+
+const getMessageList = async () => {
+  const { data: res } = await getMessageListApi()
+  messageList.value = res.data
+}
+getMessageList()
 </script>
 
 <template>
   home
-  <ChatlistChat></ChatlistChat>
+  <template v-for="i in messageList" :key="i.id">
+    <chatlist-chat
+      v-if="i.type == 'FriendMessage'"
+      :qq="i.sender.id"
+      :name="i.sender?.nickname"
+      :message="i.messageText"
+      avatar-type="member"
+      :date="i.date"
+    ></chatlist-chat>
+
+    <chatlist-chat
+      v-if="i.type == 'GroupMessage'"
+      :qq="i.sender.group.id"
+      :name="i.sender?.group.name"
+      :message="`${i.sender.memberName}： ${i.messageText}`"
+      avatar-type="group"
+      :date="i.date"
+    ></chatlist-chat>
+    <chatlist-chat
+      v-if="i.type == 'FriendSyncMessage'"
+      :qq="i.subject.id"
+      :name="i.subject?.nickname"
+      :message="i.messageText"
+      avatar-type="member"
+      :date="i.date"
+    ></chatlist-chat>
+
+    <chatlist-chat
+      v-if="i.type == 'GroupSyncMessage'"
+      :qq="i.subject.id"
+      :name="i.subject?.nickname"
+      :message="i.messageText"
+      avatar-type="group"
+      :date="i.date"
+    ></chatlist-chat>
+  </template>
 </template>
 
 <style lang="less" scoped></style>
