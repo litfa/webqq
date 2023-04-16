@@ -25,7 +25,7 @@ const props = defineProps({
     <div class="text">
       <div class="title">
         <div class="name">{{ name }}</div>
-        <div class="date">{{dayjs(date).format('YYYY-MM-DD HH:mm')}}</div>
+        <div class="date">{{ dayjs(date).format('YYYY-MM-DD HH:mm') }}</div>
       </div>
       <div class="title-row">
         <div class="message">{{ message }}</div>
@@ -90,7 +90,11 @@ const props = defineProps({
     .title-row {
       display: flex;
       justify-content: space-between;
-
+      .name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
       .date {
         font-size: 12px;
         color: #707579;
@@ -102,6 +106,7 @@ const props = defineProps({
         white-space: nowrap;
         width: 0;
         flex: 1;
+        color: #707579;
       }
 
       .count {
