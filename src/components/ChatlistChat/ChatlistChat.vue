@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import UserAvatar from '../UserAvatar/UserAvatar.vue'
 import dayjs from 'dayjs'
+import { chatListTime } from '../../utils/dayjs'
 const props = defineProps({
   qq: {
     type: [Number],
@@ -25,7 +26,7 @@ const props = defineProps({
     <div class="text">
       <div class="title">
         <div class="name">{{ name }}</div>
-        <div class="date">{{ dayjs(date).format('YYYY-MM-DD HH:mm') }}</div>
+        <div class="date">{{ chatListTime(date) }}</div>
       </div>
       <div class="title-row">
         <div class="message">{{ message }}</div>
@@ -94,6 +95,8 @@ const props = defineProps({
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        width: 0;
+        flex: 1;
       }
       .date {
         font-size: 12px;
