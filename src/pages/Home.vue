@@ -45,7 +45,7 @@ getMessageList()
     <chatlist-chat
       v-if="i.type == 'GroupSyncMessage'"
       :qq="i.subject.id"
-      :name="i.subject?.nickname"
+      :name="i.subject?.name"
       :message="i.messageText"
       avatar-type="group"
       :date="i.date"
