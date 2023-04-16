@@ -3,7 +3,6 @@ import ChatlistChat from '../components/ChatlistChat/ChatlistChat.vue'
 import { getMessageList as getMessageListApi } from '../apis/getMessageList'
 import { ref } from 'vue'
 import type { GetMessageList } from '../types/Message'
-import { chatListTime } from '../utils/dayjs'
 
 const messageList = ref<GetMessageList[]>([])
 

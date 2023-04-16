@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import UserAvatar from '../UserAvatar/UserAvatar.vue'
-import dayjs from 'dayjs'
 import { chatListTime } from '../../utils/dayjs'
-const props = defineProps({
+defineProps({
   qq: {
     type: [Number],
     required: true
@@ -30,7 +29,7 @@ const props = defineProps({
       </div>
       <div class="title-row">
         <div class="message">{{ message }}</div>
-        <div class="count">1241+</div>
+        <!-- <div class="count">1241+</div> -->
       </div>
     </div>
   </div>
