@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import UserAvatar from '../UserAvatar/UserAvatar.vue'
+import MessageBubble from '../MessageBubble/MessageBubble.vue'
+import { MessageChain } from 'typescript-mirai-api-http/src/types/MessageChainType'
 
 withDefaults(
   defineProps<{
     qq?: number | string
     name?: string
-    message: string
+    messageChain: MessageChain[]
     reverse: boolean
     avatarDisplay?: 'display' | 'hidden' | 'transparency'
   }>(),
@@ -26,10 +28,7 @@ withDefaults(
     </div>
     <div class="content">
       <div class="name" v-if="name">{{ name }}</div>
-      <div class="message-bubble">
-        <div class="message">{{ message }}</div>
-        <!-- <span class="date">19:13</span> -->
-      </div>
+      <message-bubble :message-chain="messageChain" />
     </div>
   </div>
 </template>
@@ -62,19 +61,7 @@ body {
     text-align: right;
     .name {
       margin-bottom: 3px;
-    }
-    .message-bubble {
-      background-color: #fff;
-      min-height: 35px;
-      max-width: 90%;
-      padding: 10px 15px;
-      box-sizing: border-box;
-      border-radius: 0px 10px 10px 10px;
-
-      .message {
-        word-break: break-all;
-        text-align: left;
-      }
+      text-align: left;
     }
   }
 }
@@ -82,7 +69,10 @@ body {
   flex-direction: row-reverse;
   .content {
     align-items: flex-end;
-    .message-bubble {
+    .name {
+      text-align: right;
+    }
+    :deep(.message-bubble) {
       border-radius: 10px 0px 10px 10px;
     }
   }
