@@ -5,19 +5,19 @@ import type {
   GroupSyncMessage
 } from 'typescript-mirai-api-http/src/types/MessageType'
 
-interface FriendMessageType extends FriendMessage {
+export interface FriendMessageType extends FriendMessage {
   messageText: string
   date: string
 }
-interface GroupMessageType extends GroupMessage {
+export interface GroupMessageType extends GroupMessage {
   messageText: string
   date: string
 }
-interface FriendSyncMessageType extends FriendSyncMessage {
+export interface FriendSyncMessageType extends FriendSyncMessage {
   messageText: string
   date: string
 }
-interface GroupSyncMessageType extends GroupSyncMessage {
+export interface GroupSyncMessageType extends GroupSyncMessage {
   messageText: string
   date: string
 }
