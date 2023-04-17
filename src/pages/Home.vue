@@ -33,6 +33,7 @@ getMessageList()
       avatar-type="group"
       :date="i.date"
     ></chatlist-chat>
+
     <chatlist-chat
       v-if="i.type == 'FriendSyncMessage'"
       :qq="i.subject.id"

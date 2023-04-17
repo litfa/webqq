@@ -26,7 +26,7 @@ export const getGroupRecord = (
     method: 'post',
     data: {
       group,
-      lastId: 492643
+      lastId: 495135
     }
   })
 }

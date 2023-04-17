@@ -1,20 +1,13 @@
 <script setup lang="ts">
 import UserAvatar from '../UserAvatar/UserAvatar.vue'
 import { chatListTime } from '../../utils/dayjs'
-defineProps({
-  qq: {
-    type: [Number],
-    required: true
-  },
-  name: String,
-  message: String,
-  avatarType: {
-    validator(value: string) {
-      return ['member', 'group'].includes(value)
-    }
-  },
-  date: [String, Number, Date]
-})
+defineProps<{
+  qq: number
+  name: string
+  message: string
+  avatarType: 'member' | 'group'
+  date: string | number | Date
+}>()
 </script>
 
 <template>

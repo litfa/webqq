@@ -8,18 +8,24 @@ withDefaults(
     qq?: number | string
     name?: string
     messageChain: MessageChain[]
-    reverse: boolean
+    reverse?: boolean
     avatarDisplay?: 'display' | 'hidden' | 'transparency'
+    infoDisplay?: boolean
   }>(),
   {
     reverse: false,
-    avatarDisplay: 'display'
+    avatarDisplay: 'display',
+    infoDisplay: true
   }
 )
 </script>
 
 <template>
-  <div class="bubble" :class="reverse ? 'reverse' : ''" :avatar-display="avatarDisplay">
+  <div
+    class="bubble"
+    :class="reverse ? 'reverse' : ''"
+    :avatar-display="!infoDisplay ? 'transparency' : avatarDisplay"
+  >
     <div class="avatar">
       <user-avatar
         v-if="qq != undefined && avatarDisplay != 'hidden'"
@@ -27,7 +33,7 @@ withDefaults(
       ></user-avatar>
     </div>
     <div class="content">
-      <div class="name" v-if="name">{{ name }}</div>
+      <div class="name" v-if="name && infoDisplay">{{ name }}</div>
       <message-bubble :message-chain="messageChain" />
     </div>
   </div>
