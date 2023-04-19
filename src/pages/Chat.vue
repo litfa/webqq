@@ -4,6 +4,7 @@ import { getGroupRecord } from '../apis/getMessageRecord'
 import { useRoute } from 'vue-router'
 import { ref } from 'vue'
 import { GroupMessageType, GroupSyncMessageType } from '../types/Message'
+import vInfiniteScroll from '../utils/infiniteScroll'
 
 const route = useRoute()
 
@@ -22,7 +23,6 @@ const display = (i: number, e: GroupMessageType | GroupSyncMessageType): boolean
   if (i == 0) {
     return true
   }
-  console.log(i, e);
   
   const lastMessage = list.value[i - 1]
 
@@ -39,26 +39,39 @@ const display = (i: number, e: GroupMessageType | GroupSyncMessageType): boolean
 
   return true
 }
+
+const load = () => {
+  console.log('触发加载');
+}
 </script>
 
 <template>
-  <template v-for="(i, index) in list">
-    <bubble
-      v-if="i.type == 'GroupMessage'"
-      :qq="i.sender.id"
-      :message-chain="i.messageChain"
-      :name="i.sender.memberName"
-      :info-display="display(index, i)"
-    />
-    <bubble
-      v-if="i.type == 'GroupSyncMessage'"
-      :message-chain="i.messageChain"
-      name="XING"
-      :avatar-display="'hidden'"
-      :info-display="display(index, i)"
-      reverse
-    />
-  </template>
+  <div class="chat" v-infinite-scroll="{offset: 10, cb: load}">
+    <template v-for="(i, index) in list">
+      <bubble
+        v-if="i.type == 'GroupMessage'"
+        :qq="i.sender.id"
+        :message-chain="i.messageChain"
+        :name="i.sender.memberName"
+        :info-display="display(index, i)"
+      />
+      <bubble
+        v-if="i.type == 'GroupSyncMessage'"
+        :message-chain="i.messageChain"
+        name="XING"
+        :avatar-display="'hidden'"
+        :info-display="display(index, i)"
+        reverse
+      />
+    </template>
+  </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.chat {
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+}
+</style>
