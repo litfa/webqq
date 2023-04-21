@@ -5,7 +5,6 @@ import type {
   GroupMessageType,
   GroupSyncMessageType
 } from '../types/Message'
-import type { AxiosResponse } from 'axios'
 
 export const getFriendMessageRecord = (
   qq: number
@@ -19,14 +18,15 @@ export const getFriendMessageRecord = (
   })
 }
 export const getGroupRecord = (
-  group: number
+  group: number,
+  lastId?: number
 ): Response<(GroupMessageType | GroupSyncMessageType)[]> => {
   return request({
     url: '/getMessageRecord/group',
     method: 'post',
     data: {
       group,
-      lastId: 495135
+      lastId
     }
   })
 }
