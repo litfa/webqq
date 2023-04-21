@@ -33,7 +33,7 @@ getMessageList()
       :message="`${i.sender.memberName}： ${i.messageText}`"
       avatar-type="group"
       :date="i.date"
-      @click="$router.push(`/friend/${i.sender.group.id}`)"
+      @click="$router.push(`/group/${i.sender.group.id}`)"
     ></chatlist-chat>
 
     <chatlist-chat

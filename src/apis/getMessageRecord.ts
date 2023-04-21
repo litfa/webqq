@@ -7,13 +7,15 @@ import type {
 } from '../types/Message'
 
 export const getFriendMessageRecord = (
-  qq: number
+  qq: number,
+  lastId?: number
 ): Response<(FriendMessageType | FriendSyncMessageType)[]> => {
   return request({
     url: '/getMessageRecord/friend',
     method: 'post',
     data: {
-      qq
+      qq,
+      lastId
     }
   })
 }

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Bubble from '../components/Bubble/Bubble.vue'
-import { getGroupRecord } from '../apis/getMessageRecord'
+import { getFriendMessageRecord } from '../apis/getMessageRecord'
 import { useRoute } from 'vue-router'
 import { onMounted, ref } from 'vue'
-import { GroupMessageType, GroupSyncMessageType } from '../types/Message'
+import { FriendMessageType, FriendSyncMessageType } from '../types/Message'
 import { messageTime } from '../utils/dayjs'
 
 const route = useRoute()
@@ -11,12 +11,12 @@ const chat = ref<null | HTMLDivElement>(null)
 const loading = ref(false)
 
 const qq = Number(route.params?.qq)
-const list = ref<(GroupMessageType | GroupSyncMessageType)[]>([])
+const list = ref<(FriendMessageType | FriendSyncMessageType)[]>([])
 
 const getMessageRecord = async (lastId?: number) => {
   if (loading.value) return
   loading.value = true
-  const { data: res } = await getGroupRecord(qq, lastId)
+  const { data: res } = await getFriendMessageRecord(qq, lastId)
   if (res.status == 200) {
     list.value.unshift(...res.data)
   }
@@ -26,19 +26,14 @@ const getMessageRecord = async (lastId?: number) => {
 const init = async () => {
   await getMessageRecord()
   const el = chat.value
-  console.log(el)
-
   if (!el) return
-  console.log(el.scrollTop, el.scrollHeight, el.clientHeight)
-
   el.scrollTop = el.scrollHeight
-  console.log(el.scrollTop, el.scrollHeight)
 }
 init()
 
 const display = (
   i: number,
-  e: GroupMessageType | GroupSyncMessageType
+  e: FriendMessageType | FriendSyncMessageType
 ): { info: boolean; date: string | null } => {
   if (i == 0) {
     return { info: true, date: null }
@@ -53,11 +48,11 @@ const display = (
   }
 
   if (lastMessage.type == e.type) {
-    if (lastMessage.type == 'GroupMessage' && e.type == 'GroupMessage') {
+    if (lastMessage.type == 'FriendMessage' && e.type == 'FriendMessage') {
       if (lastMessage.sender.id == e.sender.id) {
         return { info: false, date: null }
       }
-    } else if (lastMessage.type == 'GroupSyncMessage' && e.type == 'GroupSyncMessage') {
+    } else if (lastMessage.type == 'FriendSyncMessage' && e.type == 'FriendSyncMessage') {
       // sync都是自己的消息，可以直接隐藏
       return { info: false, date: null }
     }
@@ -97,18 +92,16 @@ onMounted(() => {
         {{ display(index, i).date }}
       </div>
       <bubble
-        v-if="i.type == 'GroupMessage'"
+        v-if="i.type == 'FriendMessage'"
         :qq="i.sender.id"
         :message-chain="i.messageChain"
-        :name="i.sender.memberName"
+        :name="i.sender.remark || i.sender.nickname"
         :info-display="display(index, i).info"
       />
       <bubble
-        v-if="i.type == 'GroupSyncMessage'"
+        v-if="i.type == 'FriendSyncMessage'"
         :message-chain="i.messageChain"
-        name="XING"
         :avatar-display="'hidden'"
-        :info-display="display(index, i).info"
         reverse
       />
     </template>
