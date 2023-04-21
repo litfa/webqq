@@ -2,7 +2,7 @@
 import Bubble from '../components/Bubble/Bubble.vue'
 import { getGroupRecord } from '../apis/getMessageRecord'
 import { useRoute } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 import { GroupMessageType, GroupSyncMessageType } from '../types/Message'
 import dayjs from 'dayjs'
 
@@ -22,7 +22,21 @@ const getMessageRecord = async (lastId?: number) => {
   }
   loading.value = false
 }
-getMessageRecord()
+
+const init = async () => {
+  await getMessageRecord()
+  // nextTick(() => {
+  const el = chat.value
+  console.log(el)
+
+  if (!el) return
+  console.log(el.scrollTop, el.scrollHeight, el.clientHeight)
+
+  el.scrollTop = el.scrollHeight
+  console.log(el.scrollTop, el.scrollHeight)
+  // })
+}
+init()
 
 const display = (i: number, e: GroupMessageType | GroupSyncMessageType): boolean => {
   if (i == 0) {
