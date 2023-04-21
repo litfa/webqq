@@ -23,6 +23,7 @@ getMessageList()
       :message="i.messageText"
       avatar-type="member"
       :date="i.date"
+      @click="$router.push(`/friend/${i.sender.id}`)"
     ></chatlist-chat>
 
     <chatlist-chat
@@ -32,6 +33,7 @@ getMessageList()
       :message="`${i.sender.memberName}： ${i.messageText}`"
       avatar-type="group"
       :date="i.date"
+      @click="$router.push(`/friend/${i.sender.group.id}`)"
     ></chatlist-chat>
 
     <chatlist-chat
@@ -41,6 +43,7 @@ getMessageList()
       :message="i.messageText"
       avatar-type="member"
       :date="i.date"
+      @click="$router.push(`/friend/${i.subject.id}`)"
     ></chatlist-chat>
 
     <chatlist-chat
@@ -50,6 +53,7 @@ getMessageList()
       :message="i.messageText"
       avatar-type="group"
       :date="i.date"
+      @click="$router.push(`/friend/${i.subject.id}`)"
     ></chatlist-chat>
   </template>
 </template>
