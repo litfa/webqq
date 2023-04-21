@@ -7,14 +7,19 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "home" */ '../pages/Home.vue')
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ '../pages/Login.vue')
+  },
+  {
     path: '/group/:qq',
     name: 'GroupChat',
-    component: () => import(/* webpackChunkName: "home" */ '../pages/Group.vue')
+    component: () => import(/* webpackChunkName: "group" */ '../pages/Group.vue')
   },
   {
     path: '/friend/:qq',
     name: 'FriendChat',
-    component: () => import(/* webpackChunkName: "home" */ '../pages/Friend.vue')
+    component: () => import(/* webpackChunkName: "friend" */ '../pages/Friend.vue')
   }
 ]
 
