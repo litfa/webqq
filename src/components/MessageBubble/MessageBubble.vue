@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { MessageChain } from 'typescript-mirai-api-http/src/types/MessageChainType'
 
-// import {} from
 defineProps<{
   messageChain: MessageChain[]
 }>()

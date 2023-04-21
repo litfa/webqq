@@ -1,19 +1,4 @@
 <script setup lang="ts">
-// const props = defineProps({
-//   qq: {
-//     type: [Number, String],
-//     required: true
-//   },
-//   alt: String,
-//   type: {
-//     default: 'member',
-
-//     validator(value: string) {
-//       return ['member', 'group'].includes(value)
-//     }
-//   }
-// })
-
 const props = withDefaults(
   defineProps<{
     qq: number | string
