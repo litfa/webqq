@@ -4,7 +4,7 @@ export const login = (
   password: string,
   verificationCodeId: string,
   verificationCode: string
-) => {
+): Response<{ token: string }> => {
   return request({
     url: '/login/',
     method: 'post',
