@@ -13,10 +13,10 @@ const loading = ref(false)
 const qq = Number(route.params?.qq)
 const list = ref<(FriendMessageType | FriendSyncMessageType)[]>([])
 
-const getMessageRecord = async (lastId?: number) => {
+const getMessageRecord = async (lastId?: number, maxTimestamp?: number) => {
   if (loading.value) return
   loading.value = true
-  const { data: res } = await getFriendMessageRecord(qq, lastId)
+  const { data: res } = await getFriendMessageRecord(qq, lastId, maxTimestamp)
   if (res.status == 200) {
     list.value.unshift(...res.data)
   }
@@ -62,7 +62,7 @@ const display = (
 }
 
 const load = async () => {
-  await getMessageRecord(list.value.at(0)?.id)
+  await getMessageRecord(list.value.at(0)?.id, list.value.at(0)?.timestamp)
 }
 
 onMounted(() => {
