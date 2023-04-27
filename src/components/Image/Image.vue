@@ -2,11 +2,12 @@
 defineProps<{
   src?: string
   alt?: string
+  previewSrcList?: string[]
 }>()
 </script>
 
 <template>
-  <el-image :src="src" :alt="alt" lazy />
+  <el-image :src="src" :alt="alt" :preview-src-list="[src!]" lazy />
 </template>
 
 <style lang="less" scoped></style>
