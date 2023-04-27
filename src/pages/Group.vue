@@ -3,7 +3,7 @@ import { getGroupRecord } from '../apis/getMessageRecord'
 import { useRoute } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import { GroupMessageType, GroupSyncMessageType } from '../types/Message'
-import Chatlist from '../components/Chatlist/Chatlist.vue'
+import Messagelist from '../components/Messagelist/Messagelist.vue'
 
 const route = useRoute()
 const chat = ref<null | HTMLDivElement>(null)
@@ -57,7 +57,7 @@ onMounted(() => {
 
 <template>
   <div class="chat" ref="chat">
-    <chatlist :list="list" />
+    <messagelist :list="list" />
   </div>
 </template>
 

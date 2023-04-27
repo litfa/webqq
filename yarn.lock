@@ -852,11 +852,6 @@ normalize-wheel-es@^1.2.0:
   resolved "https://registry.npmmirror.com/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz#0fa2593d619f7245a541652619105ab076acf09e"
   integrity sha512-Wj7+EJQ8mSuXr2iWfnujrimU35R2W4FAErEyTmJoJ7ucwTn2hOUSsRehMb5RSYkxXGTM7Y9QpvPmp++w5ftoJw==
 
-object-assign@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
-  integrity sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==
-
 parse-node-version@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmmirror.com/parse-node-version/-/parse-node-version-1.0.1.tgz#e2b5dbede00e7fa9bc363607f53327e8b073189b"
@@ -895,13 +890,6 @@ pkg-types@^1.0.2:
     jsonc-parser "^3.2.0"
     mlly "^1.1.1"
     pathe "^1.1.0"
-
-postcss-px-to-viewport-8-plugin@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/postcss-px-to-viewport-8-plugin/-/postcss-px-to-viewport-8-plugin-1.2.0.tgz#debb211a790c5967c14cc4be8413d7c34343003f"
-  integrity sha512-3mbLHcJSb8LymP3zIsvwBkumkyfau5IMEGcn83dzELIRi83yKbIuJCKv3sDZW5XaJs3CntdncYugHWffbubCsg==
-  dependencies:
-    object-assign "^4.1.1"
 
 postcss@^8.1.10, postcss@^8.4.20:
   version "8.4.21"

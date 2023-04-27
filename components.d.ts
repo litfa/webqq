@@ -19,6 +19,7 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     Image: typeof import('./src/components/Image/Image.vue')['default']
     MessageBubble: typeof import('./src/components/MessageBubble/MessageBubble.vue')['default']
+    Messagelist: typeof import('./src/components/Messagelist/Messagelist.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UserAvatar: typeof import('./src/components/UserAvatar/UserAvatar.vue')['default']

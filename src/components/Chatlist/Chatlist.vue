@@ -1,98 +1,62 @@
 <script setup lang="ts">
-import { messageTime } from '../../utils/dayjs'
-import {
-  FriendMessageType,
-  FriendSyncMessageType,
-  GroupMessageType,
-  GroupSyncMessageType
-} from '../../types/Message'
-import Bubble from '../Bubble/Bubble.vue'
+import ChatlistChat from '../ChatlistChat/ChatlistChat.vue'
+import { getMessageList as getMessageListApi } from '../../apis/getMessageList'
+import { ref } from 'vue'
+import type { GetMessageList } from '../../types/Message'
 
-const props = defineProps<{
-  list:
-    | (FriendMessageType | FriendSyncMessageType)[]
-    | (GroupMessageType | GroupSyncMessageType)[]
-}>()
+const messageList = ref<GetMessageList[]>([])
 
-const display = (
-  i: number,
-  e: FriendMessageType | FriendSyncMessageType | GroupMessageType | GroupSyncMessageType
-): { info: boolean; date: string | null } => {
-  if (i == 0) {
-    return { info: true, date: null }
-  }
-
-  const lastMessage = props.list[i - 1]
-
-  const date = messageTime(lastMessage.timestamp, e.timestamp)
-
-  if (date) {
-    return { info: true, date }
-  }
-
-  if (lastMessage.type == e.type) {
-    if (lastMessage.type == 'FriendMessage' && e.type == 'FriendMessage') {
-      if (lastMessage.sender.id == e.sender.id) {
-        return { info: false, date: null }
-      }
-    } else if (lastMessage.type == 'FriendSyncMessage' && e.type == 'FriendSyncMessage') {
-      // sync都是自己的消息，可以直接隐藏
-      return { info: false, date: null }
-    }
-
-    if (lastMessage.type == 'GroupMessage' && e.type == 'GroupMessage') {
-      if (lastMessage.sender.id == e.sender.id) {
-        return { info: false, date: null }
-      }
-    } else if (lastMessage.type == 'GroupSyncMessage' && e.type == 'GroupSyncMessage') {
-      // sync都是自己的消息，可以直接隐藏
-      return { info: false, date: null }
-    }
-  }
-
-  return { info: true, date: null }
+const getMessageList = async () => {
+  const { data: res } = await getMessageListApi()
+  messageList.value = res.data
 }
+getMessageList()
 </script>
 
 <template>
-  <template v-for="(i, index) in list">
-    <div class="date" v-if="display(index, i).date">
-      {{ display(index, i).date }}
-    </div>
-    <bubble
-      v-if="i.type == 'FriendMessage'"
-      :qq="i.sender.id"
-      :message-chain="i.messageChain"
-      :name="i.sender.remark || i.sender.nickname"
-      :info-display="display(index, i).info"
-    />
-    <bubble
-      v-if="i.type == 'FriendSyncMessage'"
-      :message-chain="i.messageChain"
-      :avatar-display="'hidden'"
-      reverse
-    />
-    <bubble
-      v-if="i.type == 'GroupMessage'"
-      :qq="i.sender.id"
-      :message-chain="i.messageChain"
-      :name="i.sender.memberName"
-      :info-display="display(index, i).info"
-    />
-    <bubble
-      v-if="i.type == 'GroupSyncMessage'"
-      :message-chain="i.messageChain"
-      name="XING"
-      :avatar-display="'hidden'"
-      :info-display="display(index, i).info"
-      reverse
-    />
-  </template>
+  <div class="chatlist">
+    <template v-for="i in messageList" :key="i.id">
+      <chatlist-chat
+        v-if="i.type == 'FriendMessage'"
+        :qq="i.sender.id"
+        :name="i.sender?.nickname"
+        :message="i.messageText"
+        avatar-type="member"
+        :date="i.date"
+        @click="$router.push(`/home/friend/${i.sender.id}`)"
+      ></chatlist-chat>
+
+      <chatlist-chat
+        v-if="i.type == 'GroupMessage'"
+        :qq="i.sender.group.id"
+        :name="i.sender?.group.name"
+        :message="`${i.sender.memberName}： ${i.messageText}`"
+        avatar-type="group"
+        :date="i.date"
+        @click="$router.push(`/home/group/${i.sender.group.id}`)"
+      ></chatlist-chat>
+
+      <chatlist-chat
+        v-if="i.type == 'FriendSyncMessage'"
+        :qq="i.subject.id"
+        :name="i.subject?.nickname"
+        :message="i.messageText"
+        avatar-type="member"
+        :date="i.date"
+        @click="$router.push(`/home/friend/${i.subject.id}`)"
+      ></chatlist-chat>
+
+      <chatlist-chat
+        v-if="i.type == 'GroupSyncMessage'"
+        :qq="i.subject.id"
+        :name="i.subject?.name"
+        :message="i.messageText"
+        avatar-type="group"
+        :date="i.date"
+        @click="$router.push(`/home/group/${i.subject.id}`)"
+      ></chatlist-chat>
+    </template>
+  </div>
 </template>
 
-<style lang="less" scoped>
-.date {
-  text-align: center;
-  margin: 15px 0;
-}
-</style>
+<style lang="less" scoped></style>

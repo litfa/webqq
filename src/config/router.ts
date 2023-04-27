@@ -3,23 +3,35 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '../pages/Home.vue')
+    component: () => import(/* webpackChunkName: "home" */ '../pages/Home.vue'),
+    children: [
+      {
+        path: 'group/:qq',
+        name: 'GroupChat',
+        meta: {
+          keepAlive: true
+        },
+        component: () => import(/* webpackChunkName: "group" */ '../pages/Group.vue')
+      },
+      {
+        path: 'friend/:qq',
+        name: 'FriendChat',
+        meta: {
+          keepAlive: true
+        },
+        component: () => import(/* webpackChunkName: "friend" */ '../pages/Friend.vue')
+      }
+    ]
   },
   {
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "login" */ '../pages/Login.vue')
-  },
-  {
-    path: '/group/:qq',
-    name: 'GroupChat',
-    component: () => import(/* webpackChunkName: "group" */ '../pages/Group.vue')
-  },
-  {
-    path: '/friend/:qq',
-    name: 'FriendChat',
-    component: () => import(/* webpackChunkName: "friend" */ '../pages/Friend.vue')
   }
 ]
 

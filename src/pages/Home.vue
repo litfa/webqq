@@ -1,61 +1,38 @@
 <script setup lang="ts">
-import ChatlistChat from '../components/ChatlistChat/ChatlistChat.vue'
-import { getMessageList as getMessageListApi } from '../apis/getMessageList'
 import { ref } from 'vue'
-import type { GetMessageList } from '../types/Message'
+import Chatlist from '../components/Chatlist/Chatlist.vue'
 
-const messageList = ref<GetMessageList[]>([])
+const isPc = ref<boolean>()
 
-const getMessageList = async () => {
-  const { data: res } = await getMessageListApi()
-  messageList.value = res.data
-}
-getMessageList()
+addEventListener('resize', () => {
+  // console.log(document.body.clientWidth)
+  isPc.value = document.body.clientWidth > 500
+  console.log(document.body.clientWidth > 500)
+})
 </script>
 
 <template>
-  home
-  <template v-for="i in messageList" :key="i.id">
-    <chatlist-chat
-      v-if="i.type == 'FriendMessage'"
-      :qq="i.sender.id"
-      :name="i.sender?.nickname"
-      :message="i.messageText"
-      avatar-type="member"
-      :date="i.date"
-      @click="$router.push(`/friend/${i.sender.id}`)"
-    ></chatlist-chat>
-
-    <chatlist-chat
-      v-if="i.type == 'GroupMessage'"
-      :qq="i.sender.group.id"
-      :name="i.sender?.group.name"
-      :message="`${i.sender.memberName}： ${i.messageText}`"
-      avatar-type="group"
-      :date="i.date"
-      @click="$router.push(`/group/${i.sender.group.id}`)"
-    ></chatlist-chat>
-
-    <chatlist-chat
-      v-if="i.type == 'FriendSyncMessage'"
-      :qq="i.subject.id"
-      :name="i.subject?.nickname"
-      :message="i.messageText"
-      avatar-type="member"
-      :date="i.date"
-      @click="$router.push(`/friend/${i.subject.id}`)"
-    ></chatlist-chat>
-
-    <chatlist-chat
-      v-if="i.type == 'GroupSyncMessage'"
-      :qq="i.subject.id"
-      :name="i.subject?.name"
-      :message="i.messageText"
-      avatar-type="group"
-      :date="i.date"
-      @click="$router.push(`/group/${i.subject.id}`)"
-    ></chatlist-chat>
-  </template>
+  <div class="home">
+    <chatlist v-show="isPc || $route.path == '/home/'"></chatlist>
+    <div class="chat">
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
+    </div>
+  </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.home {
+  display: flex;
+  height: 100vh;
+  .chatlist {
+    width: 300px;
+  }
+  .chat {
+    flex: 1;
+  }
+}
+</style>
