@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { MessageChain } from 'typescript-mirai-api-http/src/types/MessageChainType'
+import Image from '../Image/Image.vue'
 
 defineProps<{
   messageChain: MessageChain[]
@@ -7,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <img
+  <Image
     v-if="messageChain.length == 2 && messageChain[1].type == 'Image'"
     :src="messageChain[1].url"
     :alt="messageChain[1].imageId"
@@ -26,7 +27,7 @@ defineProps<{
         <a href="" class="at">@全体成员&nbsp;</a>
       </template>
       <template v-if="i.type == 'Image'">
-        <img :src="i.url" :alt="i.imageId" class="image" />
+        <Image :src="i.url" :alt="i.imageId" class="image" />
       </template>
       <template v-if="i.type == 'Face'">
         <span>[Face: {{ i.name }}]</span>
