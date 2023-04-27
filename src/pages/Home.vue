@@ -10,19 +10,16 @@ const getSize = () => {
 getSize()
 
 addEventListener('resize', getSize)
-
 </script>
 
 <template>
   <div class="home">
     <chatlist v-show="isPc || $route.path == '/home/'"></chatlist>
-    <div class="chat">
-      <router-view v-slot="{ Component }">
-        <keep-alive>
-          <component :is="Component" />
-        </keep-alive>
-      </router-view>
-    </div>
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
   </div>
 </template>
 
@@ -31,9 +28,11 @@ addEventListener('resize', getSize)
   display: flex;
   height: 100vh;
   .chatlist {
-    width: 300px;
+    width: 100%;
+    max-width: v-bind('isPc ? ' 400px ' : ' none '');
   }
   .chat {
+    min-width: 300px;
     flex: 1;
   }
 }

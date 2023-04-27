@@ -59,4 +59,8 @@ getMessageList()
   </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.chatlist {
+  background-color: #fff;
+}
+</style>
