@@ -35,8 +35,6 @@ export const messageTime = (time1?: Time, time2?: Time) => {
   const date1 = dayjs(time1)
   const date2 = dayjs(time2)
 
-  console.log(date1.valueOf(), date2.valueOf(), date2.valueOf() - date1.valueOf())
-
   // 大于一分钟显示
   if (date2.valueOf() - date1.valueOf() < 1000 * 60) {
     return

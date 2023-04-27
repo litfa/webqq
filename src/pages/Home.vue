@@ -4,11 +4,13 @@ import Chatlist from '../components/Chatlist/Chatlist.vue'
 
 const isPc = ref<boolean>()
 
-addEventListener('resize', () => {
-  // console.log(document.body.clientWidth)
+const getSize = () => {
   isPc.value = document.body.clientWidth > 500
-  console.log(document.body.clientWidth > 500)
-})
+}
+getSize()
+
+addEventListener('resize', getSize)
+
 </script>
 
 <template>
