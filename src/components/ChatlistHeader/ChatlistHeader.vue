@@ -1,16 +1,24 @@
 <script setup lang="ts">
-import { keyword, onInput, visible, data } from './useChatlistHeader'
+import {
+  keyword,
+  onInput,
+  visible,
+  groupMessage,
+  friendMessage
+} from './useChatlistHeader'
 import GroupMessageCount from './GroupMessageCount.vue'
+import FriendMessageCount from './FriendMessageCount.vue'
 </script>
 
 <template>
   <div class="chatlist_header">
-    <el-popover :visible="visible" placement="bottom" :width="400"  trigger="focus">
+    <el-popover :visible="visible" placement="bottom" :width="400" trigger="focus">
       <template #reference>
         <el-input class="search" v-model="keyword" @input="onInput"></el-input>
       </template>
       <div class="resault">
-        <group-message-count :data="data" :keyword="keyword" />
+        <group-message-count :data="groupMessage" :keyword="keyword" />
+        <friend-message-count :data="friendMessage" :keyword="keyword" />
       </div>
     </el-popover>
   </div>

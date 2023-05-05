@@ -10,9 +10,19 @@ export const searchGroupMessage = (keyword: string) => {
   })
 }
 
-export const groupMessageCount = (keyword: string) => {
+export const getGroupMessageCount = (keyword: string) => {
   return request({
     url: '/search/groupMessageCount',
+    method: 'post',
+    data: {
+      keyword
+    }
+  })
+}
+
+export const getFriendMessageCount = (keyword: string) => {
+  return request({
+    url: '/search/friendMessageCount',
     method: 'post',
     data: {
       keyword
