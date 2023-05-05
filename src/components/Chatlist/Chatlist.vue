@@ -15,6 +15,7 @@ getMessageList()
 
 <template>
   <div class="chatlist">
+    <chatlist-header></chatlist-header>
     <template v-for="i in messageList" :key="i.id">
       <chatlist-chat
         v-if="i.type == 'FriendMessage'"
