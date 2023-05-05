@@ -6,7 +6,7 @@ defineProps<{
   name: string
   message: string
   avatarType: 'member' | 'group'
-  date: string | number | Date
+  date?: string | number | Date
 }>()
 </script>
 
@@ -18,7 +18,7 @@ defineProps<{
     <div class="text">
       <div class="title">
         <div class="name">{{ name }}</div>
-        <div class="date">{{ chatListTime(date) }}</div>
+        <div class="date" v-if="date">{{ chatListTime(date) }}</div>
       </div>
       <div class="title-row">
         <div class="message">{{ message }}</div>

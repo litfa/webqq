@@ -144,6 +144,11 @@
   dependencies:
     "@floating-ui/core" "^1.2.6"
 
+"@icon-park/vue-next@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.npmmirror.com/@icon-park/vue-next/-/vue-next-1.4.2.tgz#818c048100401620e8112beb2636f10171b195cc"
+  integrity sha512-+QklF255wkfBOabY+xw6FAI0Bwln/RhdwCunNy/9sKdKuChtaU67QZqU67KGAvZUTeeBgsL+yaHHxqfQeGZXEQ==
+
 "@jridgewell/sourcemap-codec@^1.4.13":
   version "1.4.15"
   resolved "https://registry.npmmirror.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"

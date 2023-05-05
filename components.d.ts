@@ -20,11 +20,16 @@ declare module '@vue/runtime-core' {
     ElImage: typeof import('element-plus/es')['ElImage']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElPopover: typeof import('element-plus/es')['ElPopover']
+    GroupMessageCount: typeof import('./src/components/ChatlistHeader/GroupMessageCount.vue')['default']
     Image: typeof import('./src/components/Image/Image.vue')['default']
     MessageBubble: typeof import('./src/components/MessageBubble/MessageBubble.vue')['default']
+    MessageCount: typeof import('./src/components/ChatlistHeader/MessageCount.vue')['default']
     Messagelist: typeof import('./src/components/Messagelist/Messagelist.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UserAvatar: typeof import('./src/components/UserAvatar/UserAvatar.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

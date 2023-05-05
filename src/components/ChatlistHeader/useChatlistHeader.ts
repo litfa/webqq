@@ -9,7 +9,7 @@ interface MessageCount extends GroupMessageType {
 }
 
 const keyword = ref('')
-const data = ref<MessageCount[]>([])
+const data = ref<MessageCount[] | null>(null)
 
 const onInput = throttle(async () => {
   const { data: res } = await groupMessageCount(keyword.value)
@@ -21,3 +21,4 @@ const visible = computed(() => {
 })
 
 export { keyword, onInput, visible, data }
+export type { MessageCount }
