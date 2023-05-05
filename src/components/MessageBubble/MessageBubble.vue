@@ -4,6 +4,7 @@ import Image from '../Image/Image.vue'
 
 defineProps<{
   messageChain: MessageChain[]
+  reverse?: boolean
 }>()
 </script>
 
@@ -14,6 +15,15 @@ defineProps<{
     :alt="messageChain[1].imageId"
     class="image"
   />
+  <div
+    class="flash_image image"
+    v-else-if="messageChain.length == 2 && messageChain[1].type == 'FlashImage'"
+  >
+    <Image :src="messageChain[1].url" :alt="messageChain[1].imageId" />
+    <div class="footer" :style="{ textAlign: reverse ? 'left' : 'right' }">
+      <span>闪照</span>
+    </div>
+  </div>
 
   <div class="message-bubble" v-else>
     <template v-for="i in messageChain">
@@ -44,7 +54,6 @@ defineProps<{
   padding: 10px 15px;
   box-sizing: border-box;
   border-radius: 0px 10px 10px 10px;
-  text-align: left;
   word-break: break-all;
   a {
     text-decoration: none;
@@ -55,5 +64,23 @@ defineProps<{
   max-width: 90%;
   max-height: 300px;
   border-radius: 5px;
+}
+.flash_image {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 90%;
+  .footer {
+    margin-top: 5px;
+    text-align: left;
+    width: 100%;
+    span {
+      color: #fff;
+      font-size: 14px;
+      padding: 3px 10px;
+      border-radius: 50px;
+      background-color: #0005;
+    }
+  }
 }
 </style>

@@ -34,7 +34,7 @@ withDefaults(
     </div>
     <div class="content">
       <div class="name" v-if="name && infoDisplay">{{ name }}</div>
-      <message-bubble :message-chain="messageChain" />
+      <message-bubble :message-chain="messageChain" :reverse="reverse" />
     </div>
   </div>
 </template>
