@@ -1,8 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import Chatlist from '../components/Chatlist/Chatlist.vue'
 
+const route = useRoute()
 const isPc = ref<boolean>()
+const qq = ref(0)
+
+watch(
+  () => route.params.qq,
+  (value) => {
+    qq.value = Number(value)
+  }
+)
 
 const getSize = () => {
   isPc.value = document.body.clientWidth > 500
@@ -17,7 +27,7 @@ addEventListener('resize', getSize)
     <chatlist v-show="isPc || $route.path == '/home/'"></chatlist>
     <router-view v-slot="{ Component }">
       <keep-alive>
-        <component :is="Component" />
+        <component :is="Component" :key="qq" />
       </keep-alive>
     </router-view>
   </div>
