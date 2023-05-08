@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <el-image :src="src" :alt="alt" :preview-src-list="[src!]" lazy />
+  <el-image :src="src" :alt="alt" fit="contain" :preview-src-list="[src!]" lazy />
 </template>
 
 <style lang="less" scoped></style>
