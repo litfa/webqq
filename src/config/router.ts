@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           keepAlive: true
         },
-        component: () => import(/* webpackChunkName: "group" */ '../pages/Group.vue')
+        component: () => import(/* webpackChunkName: "group" */ '../pages/Home/Group.vue')
       },
       {
         path: 'friend/:qq',
@@ -24,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           keepAlive: true
         },
-        component: () => import(/* webpackChunkName: "friend" */ '../pages/Friend.vue')
+        component: () => import(/* webpackChunkName: "friend" */ '../pages/Home/Friend.vue')
       }
     ]
   },
