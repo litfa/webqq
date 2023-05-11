@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { getGroupRecord } from '../../apis/getMessageRecord'
-import { useMessage, SearchMessage } from './useMessage'
+import { useMessage, SearchMessage, MessageSearch } from './useMessage'
 
-const { list, chat, qq } = useMessage(getGroupRecord)
+const { list, chat, qq, onOpen } = useMessage(getGroupRecord)
 </script>
 
 <template>
   <div class="chat" ref="chat">
     <messagelist :list="list" />
-    <search-message type="group" :qq="qq" />
+    <message-search
+      class="message_search"
+      theme="outline"
+      size="24"
+      fill="#333"
+      @click="onOpen++"
+    />
+    <search-message type="group" :qq="qq" :on-open="onOpen" />
   </div>
 </template>
 

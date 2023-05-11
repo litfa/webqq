@@ -2,8 +2,9 @@ import { useRoute } from 'vue-router'
 import { onActivated, onDeactivated, onMounted, ref } from 'vue'
 import type { Response } from '../../utils/request'
 import SearchMessage from '../../components/SearchMessage/SearchMessage.vue'
+import { MessageSearch } from '@icon-park/vue-next'
 
-export { SearchMessage }
+export { SearchMessage, MessageSearch }
 
 export const useMessage = <T>(
   getRecord: (qq: number, lastId?: number, maxTimestamp?: number) => Response<T>
@@ -13,7 +14,7 @@ export const useMessage = <T>(
   const loading = ref(false)
   let lastScroll = 0
   const offset = 10
-
+  const onOpen = ref(0)
   const qq = Number(route.params?.qq)
   // @ts-ignore
   const list = ref<T>([])
@@ -77,6 +78,7 @@ export const useMessage = <T>(
   return {
     list,
     chat,
-    qq
+    qq,
+    onOpen
   }
 }

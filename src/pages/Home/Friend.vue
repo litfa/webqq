@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { getFriendMessageRecord } from '../../apis/getMessageRecord'
-import { useMessage, SearchMessage } from './useMessage'
+import { useMessage, SearchMessage, MessageSearch } from './useMessage'
 
-const { list, chat, qq } = useMessage(getFriendMessageRecord)
+const { list, chat, qq, onOpen } = useMessage(getFriendMessageRecord)
 </script>
 
 <template>
   <div class="chat" ref="chat">
     <messagelist :list="list" />
-    <search-message type="friend" :qq="qq" />
+    <message-search
+      class="message_search"
+      theme="outline"
+      size="24"
+      fill="#333"
+      @click="onOpen++"
+    />
+    <search-message type="friend" :qq="qq" :on-open="onOpen" />
   </div>
 </template>
 

@@ -14,6 +14,7 @@ import {
 const props = defineProps<{
   type: 'friend' | 'group'
   qq: number
+  onOpen: number
 }>()
 
 const route = useRoute()
@@ -24,6 +25,13 @@ const result = ref<
 >([])
 const loading = ref(false)
 const disabled = ref(false)
+
+watch(
+  () => props.onOpen,
+  () => {
+    open.value = true
+  }
+)
 
 const searchApi = (type: 'friend' | 'group') => {
   if (type == 'friend') {
@@ -51,8 +59,7 @@ const search = async (lastId?: number, viewLoading = true) => {
 const onInput = throttle(() => {
   result.value = []
   search()
-  console.log('onInput')
-}, 2000)
+}, 1000)
 
 const init = () => {
   if (route.query.search) {
