@@ -32,7 +32,7 @@ import FriendMessageCount from './FriendMessageCount.vue'
   }
   .search :deep(.el-input__wrapper) {
     border-radius: 200px;
-    // overflow: hidden;
+    margin: 0 10px;
   }
   .resault {
     display: flex;

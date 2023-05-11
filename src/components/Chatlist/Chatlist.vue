@@ -63,5 +63,9 @@ getMessageList()
 <style lang="less" scoped>
 .chatlist {
   background-color: #fff;
+  height: 100%;
+  overflow: auto;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 </style>

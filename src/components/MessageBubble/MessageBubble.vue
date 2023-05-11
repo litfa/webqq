@@ -55,14 +55,13 @@ defineProps<{
   box-sizing: border-box;
   border-radius: 0px 10px 10px 10px;
   word-break: break-all;
+  text-align: left;
   a {
     text-decoration: none;
     color: #3390ec;
   }
 }
 .image {
-  max-width: 90%;
-  max-height: 300px;
   border-radius: 5px;
 }
 .flash_image {
