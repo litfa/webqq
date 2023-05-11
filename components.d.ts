@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     Collapse: typeof import('./src/components/Collapse/Collapse.vue')['default']
     copy: typeof import('./src/components/ChatlistHeader/GroupMessageCount copy.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElImage: typeof import('element-plus/es')['ElImage']
@@ -29,9 +30,11 @@ declare module '@vue/runtime-core' {
     Messagelist: typeof import('./src/components/Messagelist/Messagelist.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchMessage: typeof import('./src/components/SearchMessage/SearchMessage.vue')['default']
     UserAvatar: typeof import('./src/components/UserAvatar/UserAvatar.vue')['default']
   }
   export interface ComponentCustomProperties {
+    vInfiniteScroll: typeof import('element-plus/es')['ElInfiniteScroll']
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

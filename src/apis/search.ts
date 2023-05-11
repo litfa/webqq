@@ -1,11 +1,38 @@
-import request from '../utils/request'
+import {
+  FriendMessageType,
+  FriendSyncMessageType,
+  GroupMessageType,
+  GroupSyncMessageType
+} from '../types/Message'
+import request, { Response } from '../utils/request'
 
-export const searchGroupMessage = (keyword: string) => {
+export const searchGroupMessage = (
+  keyword: string,
+  qq: number,
+  lastId?: number
+): Response<(GroupMessageType | GroupSyncMessageType)[]> => {
   return request({
     url: '/search/groupMessage',
     method: 'post',
     data: {
-      keyword
+      keyword,
+      qq,
+      lastId
+    }
+  })
+}
+export const searchFriendMessage = (
+  keyword: string,
+  qq: number,
+  lastId?: number
+): Response<(FriendMessageType | FriendSyncMessageType)[]> => {
+  return request({
+    url: '/search/friendMessage',
+    method: 'post',
+    data: {
+      keyword,
+      qq,
+      lastId
     }
   })
 }

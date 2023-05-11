@@ -1,21 +1,17 @@
 <script setup lang="ts">
 import { getGroupRecord } from '../../apis/getMessageRecord'
-import { useMessage } from './useMessage'
+import { useMessage, SearchMessage } from './useMessage'
 
-const { list, chat } = useMessage(getGroupRecord)
+const { list, chat, qq } = useMessage(getGroupRecord)
 </script>
 
 <template>
   <div class="chat" ref="chat">
     <messagelist :list="list" />
+    <search-message type="group" :qq="qq" />
   </div>
 </template>
 
 <style lang="less" scoped>
-.chat {
-  height: 100vh;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-}
+@import url(./style.less);
 </style>

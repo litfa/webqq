@@ -1,6 +1,9 @@
 import { useRoute } from 'vue-router'
 import { onActivated, onDeactivated, onMounted, ref } from 'vue'
 import type { Response } from '../../utils/request'
+import SearchMessage from '../../components/SearchMessage/SearchMessage.vue'
+
+export { SearchMessage }
 
 export const useMessage = <T>(
   getRecord: (qq: number, lastId?: number, maxTimestamp?: number) => Response<T>
@@ -73,6 +76,7 @@ export const useMessage = <T>(
 
   return {
     list,
-    chat
+    chat,
+    qq
   }
 }
