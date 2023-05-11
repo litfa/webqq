@@ -18,6 +18,7 @@ defineProps<{
           :name="i.sender.remark || i.sender.nickname"
           :message="`${i.count}条与'${keyword}'相关的消息`"
           avatar-type="member"
+          @click="$router.replace(`/home/friend/${i.sender.id}?search=${keyword}`)"
         />
       </template>
     </div>

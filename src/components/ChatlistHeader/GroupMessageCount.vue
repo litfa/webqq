@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import MessageCount from './MessageCount.vue'
-import type { MessageCount as MessageCountType } from './useChatlistHeader'
+import type { GroupMessageCount } from './useChatlistHeader'
 
 defineProps<{
-  data: MessageCountType[] | null
+  data: GroupMessageCount[] | null
   keyword: string
 }>()
 </script>
@@ -18,6 +18,7 @@ defineProps<{
           :name="i.sender.group.name"
           :message="`${i.count}条与'${keyword}'相关的消息`"
           avatar-type="group"
+          @click="$router.replace(`/home/group/${i.sender.group.id}?search=${keyword}`)"
         />
       </template>
     </div>

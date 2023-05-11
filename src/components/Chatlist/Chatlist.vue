@@ -44,7 +44,7 @@ getMessageList()
         :message="i.messageText"
         avatar-type="member"
         :date="i.date"
-        @click="$router.push(`/home/friend/${i.subject.id}`)"
+        @click="$router.replace(`/home/friend/${i.subject.id}`)"
       ></chatlist-chat>
 
       <chatlist-chat
@@ -54,7 +54,7 @@ getMessageList()
         :message="i.messageText"
         avatar-type="group"
         :date="i.date"
-        @click="$router.push(`/home/group/${i.subject.id}`)"
+        @click="$router.replace(`/home/group/${i.subject.id}`)"
       ></chatlist-chat>
     </template>
   </div>
