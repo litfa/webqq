@@ -14,7 +14,6 @@ declare module '@vue/runtime-core' {
     ChatlistChat: typeof import('./src/components/ChatlistChat/ChatlistChat.vue')['default']
     ChatlistHeader: typeof import('./src/components/ChatlistHeader/ChatlistHeader.vue')['default']
     Collapse: typeof import('./src/components/Collapse/Collapse.vue')['default']
-    copy: typeof import('./src/components/ChatlistHeader/GroupMessageCount copy.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElForm: typeof import('element-plus/es')['ElForm']
