@@ -26,11 +26,13 @@ const { botProfile } = useBotProfileStore()
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 15px;
+  padding: 5px 20px;
+  background-color: #fff;
+  box-shadow: 0px 1px 5px 0 #dfdfdfaa;
+  margin-bottom: 10px;
   .user {
     display: flex;
     align-items: center;
-    background-color: #fff;
     .avatar {
       border-radius: 50%;
       width: 40px;

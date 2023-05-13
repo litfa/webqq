@@ -33,7 +33,7 @@ defineProps<{
   display: flex;
   height: 70px;
   align-items: center;
-  padding: 10px;
+  padding: 10px 20px;
   box-sizing: border-box;
   // max-width: 350px;
   border-radius: 10px;
