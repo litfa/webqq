@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import SearchGlobal from '../SearchGlobal/SearchGlobal.vue'
+import UserStatus from '../UserStatus/UserStatus.vue'
 </script>
 
 <template>
-  <div class="chatlist_header">
+  <!-- <div class="chatlist_header"> -->
+    <user-status />
     <search-global />
-  </div>
+  <!-- </div> -->
 </template>
 
 <style lang="less" scoped>

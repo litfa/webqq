@@ -7,7 +7,7 @@ import FriendMessageCount from './FriendMessageCount.vue'
 <template>
   <el-popover :visible="visible" placement="bottom" :width="400" trigger="focus">
     <template #reference>
-      <el-input class="search" v-model="keyword" @input="onInput"></el-input>
+      <el-input class="search" placeholder="搜索" v-model="keyword" @input="onInput"></el-input>
     </template>
     <div class="resault">
       <group-message-count :data="groupMessage" :keyword="keyword" />
