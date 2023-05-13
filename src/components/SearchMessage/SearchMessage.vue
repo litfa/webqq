@@ -10,6 +10,7 @@ import {
   GroupMessageType,
   GroupSyncMessageType
 } from '../../types/Message'
+import { useBotProfileStore } from '../../config/store'
 
 const props = defineProps<{
   type: 'friend' | 'group'
@@ -25,6 +26,9 @@ const result = ref<
 >([])
 const loading = ref(false)
 const disabled = ref(false)
+const { botProfile } = useBotProfileStore()
+const nickname = botProfile?.profile?.nickname || '我'
+const qq = botProfile?.qq || 0
 
 watch(
   () => props.onOpen,
@@ -103,8 +107,8 @@ const log = () => {
           />
           <chatlist-chat
             v-if="i.type == 'FriendSyncMessage'"
-            :qq="0"
-            name="我"
+            :qq="qq"
+            :name="nickname"
             :message="i.messageText"
             avatar-type="member"
             :date="i.date"
@@ -119,8 +123,8 @@ const log = () => {
           />
           <chatlist-chat
             v-if="i.type == 'GroupSyncMessage'"
-            :qq="0"
-            name="我"
+            :qq="qq"
+            :name="nickname"
             :message="i.messageText"
             avatar-type="member"
             :date="i.date"

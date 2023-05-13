@@ -7,12 +7,14 @@ import {
   GroupSyncMessageType
 } from '../../types/Message'
 import Bubble from '../Bubble/Bubble.vue'
+import { useBotProfileStore } from '../../config/store'
 
 const props = defineProps<{
   list:
-    | (FriendMessageType | FriendSyncMessageType)[]
-    | (GroupMessageType | GroupSyncMessageType)[]
+  | (FriendMessageType | FriendSyncMessageType)[]
+  | (GroupMessageType | GroupSyncMessageType)[]
 }>()
+const { botProfile } = useBotProfileStore()
 
 const display = (
   i: number,
@@ -82,7 +84,7 @@ const display = (
     <bubble
       v-if="i.type == 'GroupSyncMessage'"
       :message-chain="i.messageChain"
-      name="XING"
+      :name="botProfile?.profile?.nickname || '我'"
       :avatar-display="'hidden'"
       :info-display="display(index, i).info"
       reverse
