@@ -32,6 +32,7 @@ declare module '@vue/runtime-core' {
     SearchGlobal: typeof import('./src/components/SearchGlobal/SearchGlobal.vue')['default']
     SearchMessage: typeof import('./src/components/SearchMessage/SearchMessage.vue')['default']
     UserAvatar: typeof import('./src/components/UserAvatar/UserAvatar.vue')['default']
+    UserStatus: typeof import('./src/components/UserStatus/UserStatus.vue')['default']
   }
   export interface ComponentCustomProperties {
     vInfiniteScroll: typeof import('element-plus/es')['ElInfiniteScroll']

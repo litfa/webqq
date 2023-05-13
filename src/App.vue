@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { getProfile } from './utils/getBotProfile'
+getProfile()
 </script>
 
 <template>
