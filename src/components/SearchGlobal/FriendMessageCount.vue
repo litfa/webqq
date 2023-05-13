@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MessageCount from './MessageCount.vue'
-import type { FriendMessageCount } from './useChatlistHeader'
+import type { FriendMessageCount } from './useSearchGlobal'
 
 defineProps<{
   data: FriendMessageCount[] | null

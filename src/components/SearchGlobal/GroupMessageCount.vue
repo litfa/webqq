@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MessageCount from './MessageCount.vue'
-import type { GroupMessageCount } from './useChatlistHeader'
+import type { GroupMessageCount } from './useSearchGlobal'
 
 defineProps<{
   data: GroupMessageCount[] | null
