@@ -59,12 +59,13 @@ const submit = () => {
     ref="formEl"
     :model="form"
   >
+    <input type="text" name="username" v-show="false" />
     <el-form-item label="密码" prop="password">
       <el-input v-model="form.password" type="password" name="password" />
     </el-form-item>
     <el-form-item label="验证码" prop="code">
       <div class="verification_code">
-        <el-input v-model="form.code" name="code" />
+        <el-input v-model="form.code" name="code" autocomplete="off" />
         <div class="svg" v-html="svg" @click="getCode"></div>
       </div>
     </el-form-item>
@@ -86,6 +87,5 @@ const submit = () => {
   display: flex;
   flex-direction: row;
   align-items: center;
- 
 }
 </style>
